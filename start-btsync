@@ -7,8 +7,7 @@ echo "Starting btsync with secret: $SECRET"
 echo "{
     \"device_name\": \"Sync Server\",
     \"listening_port\": 55555,
-    \"storage_path\": \"/btsync/.sync\",
-    \"pid_file\": \"/var/run/btsync/btsync.pid\",
+    \"storage_path\": \"/data/.sync\",
     \"check_for_updates\": false,
     \"use_upnp\": false,
     \"download_limit\": 0,
@@ -24,6 +23,6 @@ echo "{
             \"use_sync_trash\": false
         }
     ]
-}" > /btsync/btsync.conf
+}" > /etc/btsync.conf
 
-btsync --config /btsync/btsync.conf --nodaemon
+start-stop-daemon --start --quiet --chuid checkmate --name btsync --exec /usr/bin/btsync -- --config /etc/btsync.conf --nodaemon

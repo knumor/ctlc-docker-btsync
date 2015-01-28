@@ -4,9 +4,11 @@ MAINTAINER Hart Hoover <hart.hoover@rackspace.com>
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl
 RUN curl -o /usr/bin/btsync.tar.gz http://download-lb.utorrent.com/endpoint/btsync/os/linux-x64/track/stable
 RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
-RUN mkdir -p /btsync/.sync
+RUN mkdir -p /data/.sync
+RUN mkdir -p /data/deployments
+RUN mkdir -p /data/cache
 RUN mkdir -p /var/run/btsync
-RUN mkdir -p /data
+RUN useradd -m -u 8888 checkmate && chown -R checkmate: /data
 EXPOSE 55555
 ADD start-btsync /usr/bin/start-btsync
 RUN chmod +x /usr/bin/start-btsync
