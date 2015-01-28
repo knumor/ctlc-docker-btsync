@@ -2,6 +2,11 @@
 SECRET="${@}"
 : ${SECRET:=`btsync --generate-secret`}
 
+mkdir -p /data/.sync
+mkdir -p /data/deployments
+mkdir -p /data/cache
+chown -R checkmate: /data
+
 echo "Starting btsync with secret: $SECRET"
 
 echo "{
