@@ -6,7 +6,7 @@ RUN curl -o /usr/bin/btsync.tar.gz http://download-lb.utorrent.com/endpoint/btsy
 RUN cd /usr/bin && tar -xzvf btsync.tar.gz && rm btsync.tar.gz
 RUN mkdir -p /var/run/btsync
 RUN mkdir -p /data
-RUN useradd -m -u 8888 checkmate && chown -R checkmate: /data
+RUN useradd -m -u 1000 user && chown -R user: /data
 EXPOSE 55555
 ADD start-btsync /usr/bin/start-btsync
 RUN chmod +x /usr/bin/start-btsync
