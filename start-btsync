@@ -5,7 +5,7 @@ SECRET="${@}"
 mkdir -p /data/.sync
 mkdir -p /data/deployments
 mkdir -p /data/cache
-chown -R checkmate: /data
+chown -R user: /data
 
 echo "Starting btsync with secret: $SECRET"
 
@@ -30,4 +30,4 @@ echo "{
     ]
 }" > /etc/btsync.conf
 
-start-stop-daemon --start --quiet --chuid checkmate --name btsync --exec /usr/bin/btsync -- --config /etc/btsync.conf --nodaemon
+start-stop-daemon --start --quiet --chuid user --name btsync --exec /usr/bin/btsync -- --config /etc/btsync.conf --nodaemon
